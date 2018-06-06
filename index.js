@@ -1,8 +1,8 @@
-import { 
-  DeviceEventEmitter, 
+import {
+  DeviceEventEmitter,
   NativeModules,
   Platform
- } from 'react-native'
+} from 'react-native'
 
 const JPushModule = NativeModules.JPushModule
 
@@ -21,7 +21,7 @@ export default class JPush {
   /**
    * 初始化JPush 必须先初始化才能执行其他操作
    */
-  static initPush () {
+  static initPush() {
     if (Platform.OS == "android") {
       JPushModule.initPush()
     } else {
@@ -31,14 +31,14 @@ export default class JPush {
   /**
    * 停止推送，调用该方法后将不再受到推送
    */
-  static stopPush () {
+  static stopPush() {
     JPushModule.stopPush()
   }
 
   /**
    * 恢复推送功能，停止推送后，可调用该方法重新获得推送能力
    */
-  static resumePush () {
+  static resumePush() {
     if (Platform.OS == "android") {
       JPushModule.resumePush()
     } else {
@@ -49,14 +49,14 @@ export default class JPush {
   /**
    * Android Only
    */
-  static crashLogOFF () {
+  static crashLogOFF() {
     JPushModule.crashLogOFF()
   }
 
   /**
    * Android Only
    */
-  static crashLogON () {
+  static crashLogON() {
     JPushModule.crashLogON()
   }
 
@@ -65,7 +65,7 @@ export default class JPush {
    *
    * @param {Function} cb
    */
-  static notifyJSDidLoad (cb) {
+  static notifyJSDidLoad(cb) {
     JPushModule.notifyJSDidLoad(resultCode => {
       cb(resultCode)
     })
@@ -74,25 +74,25 @@ export default class JPush {
   /**
    * 清除通知栏的所有通知
    */
-  static clearAllNotifications () {
+  static clearAllNotifications() {
     if (Platform.OS == "android") {
       JPushModule.clearAllNotifications()
     } else {
-      JPush.setBadge(0,() => {})
+      JPush.setBadge(0, () => { })
     }
   }
 
   /**
    * Android Only
    */
-  static clearNotificationById (id) {
+  static clearNotificationById(id) {
     JPushModule.clearNotificationById(id)
   }
 
   /**
    * Android Only
    */
-  static getInfo (cb) {
+  static getInfo(cb) {
     JPushModule.getInfo(map => {
       cb(map)
     })
@@ -104,7 +104,7 @@ export default class JPush {
    * 如果连接状态变更为已连接返回 true
    * 如果连接状态变更为断开连接连接返回 false
    */
-  static getConnectionState (cb) {
+  static getConnectionState(cb) {
     JPushModule.getConnectionState(state => {
       cb(state)
     })
@@ -118,7 +118,7 @@ export default class JPush {
    * 如果成功 result = {tags: [String]}
    * 如果失败 result = {errorCode: Int}
    */
-  static setTags (tags, cb) {
+  static setTags(tags, cb) {
     JPushModule.setTags(tags, result => {
       cb(result)
     })
@@ -132,7 +132,7 @@ export default class JPush {
    * 如果成功 result = {tags: [String]}
    * 如果失败 result = {errorCode: Int}
    */
-  static addTags (tags, cb) {
+  static addTags(tags, cb) {
     JPushModule.addTags(tags, result => {
       cb(result)
     })
@@ -147,7 +147,7 @@ export default class JPush {
    * 如果失败 result = {errorCode: Int}
    *
    */
-  static deleteTags (tags, cb) {
+  static deleteTags(tags, cb) {
     JPushModule.deleteTags(tags, result => {
       cb(result)
     })
@@ -161,7 +161,7 @@ export default class JPush {
    * 如果失败 result = {errorCode: Int}
    *
    */
-  static cleanTags (cb) {
+  static cleanTags(cb) {
     JPushModule.cleanTags(result => {
       cb(result)
     })
@@ -175,7 +175,7 @@ export default class JPush {
    * 如果失败 result = {errorCode: Int}
    *
    */
-  static getAllTags (cb) {
+  static getAllTags(cb) {
     JPushModule.getAllTags(result => {
       cb(result)
     })
@@ -190,7 +190,7 @@ export default class JPush {
    * 如果失败 result = {errorCode: Int}
    *
    */
-  static checkTagBindState (tag, cb) {
+  static checkTagBindState(tag, cb) {
     JPushModule.checkTagBindState(tag, result => {
       cb(result)
     })
@@ -204,7 +204,7 @@ export default class JPush {
    * 如果失败 result = {errorCode: Int}
    *
    */
-  static setAlias (alias, cb) {
+  static setAlias(alias, cb) {
     JPushModule.setAlias(alias, result => {
       cb(result)
     })
@@ -218,7 +218,7 @@ export default class JPush {
    * 如果失败 result = {errorCode: Int}
    *
    */
-  static deleteAlias (cb) {
+  static deleteAlias(cb) {
     JPushModule.deleteAlias(result => {
       cb(result)
     })
@@ -232,7 +232,7 @@ export default class JPush {
    * 如果失败 result = {errorCode: Int}
    *
    */
-  static getAlias (cb) {
+  static getAlias(cb) {
     JPushModule.getAlias(map => {
       cb(map)
     })
@@ -241,21 +241,21 @@ export default class JPush {
   /**
    * Android Only
    */
-  static setStyleBasic () {
+  static setStyleBasic() {
     JPushModule.setStyleBasic()
   }
 
   /**
    * Android Only
    */
-  static setStyleCustom () {
+  static setStyleCustom() {
     JPushModule.setStyleCustom()
   }
 
   /**
    * Android Only
    */
-  static setLatestNotificationNumber (maxNumber) {
+  static setLatestNotificationNumber(maxNumber) {
     JPushModule.setLatestNotificationNumber(maxNumber)
   }
 
@@ -263,7 +263,7 @@ export default class JPush {
    * Android Only
    * @param {object} config = {"startTime": String, "endTime": String}  // 例如：{startTime: "20:30", endTime: "8:30"}
    */
-  static setSilenceTime (config) {
+  static setSilenceTime(config) {
     JPushModule.setSilenceTime(config)
   }
 
@@ -272,36 +272,43 @@ export default class JPush {
    * @param {object} config = {"days": Array, "startHour": Number, "endHour": Number}
    * // 例如：{days: [0, 6], startHour: 8, endHour: 23} 表示星期天和星期六的上午 8 点到晚上 11 点都可以推送
    */
-  static setPushTime (config) {
+  static setPushTime(config) {
     JPushModule.setPushTime(config)
   }
 
   /**
    * Android Only
    */
-  static jumpToPushActivity (activityName) {
+  static jumpToPushActivity(activityName) {
     JPushModule.jumpToPushActivity(activityName)
   }
 
   /**
    * Android Only
    */
-  static jumpToPushActivityWithParams (activityName, map) {
+  static jumpToPushActivityWithParams(activityName, map) {
     JPushModule.jumpToPushActivityWithParams(activityName, map)
   }
 
   /**
    * Android Only
    */
-  static finishActivity () {
+  static finishActivity() {
     JPushModule.finishActivity()
+  }
+
+  static removeAllListeners() {
+    Object.keys(listeners).forEach(key => {
+      listeners[key].remove()
+      listeners[key] = null
+    })
   }
 
   /**
    * 监听：自定义消息后事件
    * @param {Function} cb = (Object) => { }
    */
-  static addReceiveCustomMsgListener (cb) {
+  static addReceiveCustomMsgListener(cb) {
     listeners[cb] = DeviceEventEmitter.addListener(
       receiveCustomMsgEvent,
       message => {
@@ -314,7 +321,7 @@ export default class JPush {
    * 取消监听：自定义消息后事件
    * @param {Function} cb = (Object) => { }
    */
-  static removeReceiveCustomMsgListener (cb) {
+  static removeReceiveCustomMsgListener(cb) {
     if (!listeners[cb]) {
       return
     }
@@ -329,7 +336,7 @@ export default class JPush {
    * 如果不是通过点击推送启动应用，比如点击应用 icon 直接启动应用，notification 会返回 undefine。
    * @param {Function} cb = (notification) => {}
    */
-  static getLaunchAppNotification (cb) {
+  static getLaunchAppNotification(cb) {
     JPushModule.getLaunchAppNotification(cb)
   }
 
@@ -341,7 +348,7 @@ export default class JPush {
    * 
    * @param {Function} cb = (notification) => {}
    */
-  static addOpenNotificationLaunchAppListener (cb) {
+  static addOpenNotificationLaunchAppListener(cb) {
     listeners[cb] = DeviceEventEmitter.addListener(
       openNotificationLaunchAppEvent,
       registrationId => {
@@ -356,7 +363,7 @@ export default class JPush {
    * 取消监听：应用没有启动的状态点击推送打开应用
    * @param {Function} cb = () => {}
    */
-  static removeOpenNotificationLaunchAppEventListener (cb) {
+  static removeOpenNotificationLaunchAppEventListener(cb) {
     if (!listeners[cb]) {
       return
     }
@@ -370,7 +377,7 @@ export default class JPush {
    * 监听：应用连接已登录
    * @param {Function} cb = () => {}
    */
-  static addnetworkDidLoginListener (cb) {
+  static addnetworkDidLoginListener(cb) {
     listeners[cb] = DeviceEventEmitter.addListener(
       networkDidLogin,
       registrationId => {
@@ -385,7 +392,7 @@ export default class JPush {
    * 取消监听：应用连接已登录
    * @param {Function} cb = () => {}
    */
-  static removenetworkDidLoginListener (cb) {
+  static removenetworkDidLoginListener(cb) {
     if (!listeners[cb]) {
       return
     }
@@ -397,7 +404,7 @@ export default class JPush {
    * 监听：接收推送事件
    * @param {} cb = (Object）=> {}
    */
-  static addReceiveNotificationListener (cb) {
+  static addReceiveNotificationListener(cb) {
     listeners[cb] = DeviceEventEmitter.addListener(
       receiveNotificationEvent,
       map => {
@@ -410,7 +417,7 @@ export default class JPush {
    * 取消监听：接收推送事件
    * @param {Function} cb = (Object）=> {}
    */
-  static removeReceiveNotificationListener (cb) {
+  static removeReceiveNotificationListener(cb) {
     if (!listeners[cb]) {
       return
     }
@@ -422,7 +429,7 @@ export default class JPush {
    * 监听：点击推送事件
    * @param {Function} cb  = (Object）=> {}
    */
-  static addReceiveOpenNotificationListener (cb) {
+  static addReceiveOpenNotificationListener(cb) {
     listeners[cb] = DeviceEventEmitter.addListener(
       openNotificationEvent,
       message => {
@@ -435,7 +442,7 @@ export default class JPush {
    * 取消监听：点击推送事件
    * @param {Function} cb  = (Object）=> {}
    */
-  static removeReceiveOpenNotificationListener (cb) {
+  static removeReceiveOpenNotificationListener(cb) {
     if (!listeners[cb]) {
       return
     }
@@ -448,7 +455,7 @@ export default class JPush {
    *
    * If device register succeed, the server will return registrationId
    */
-  static addGetRegistrationIdListener (cb) {
+  static addGetRegistrationIdListener(cb) {
     listeners[cb] = DeviceEventEmitter.addListener(
       getRegistrationIdEvent,
       registrationId => {
@@ -460,7 +467,7 @@ export default class JPush {
   /**
    * Android Only
    */
-  static removeGetRegistrationIdListener (cb) {
+  static removeGetRegistrationIdListener(cb) {
     if (!listeners[cb]) {
       return
     }
@@ -474,7 +481,7 @@ export default class JPush {
    * 如果连接状态变更为已连接返回 true
    * 如果连接状态变更为断开连接连接返回 false
    */
-  static addConnectionChangeListener (cb) {
+  static addConnectionChangeListener(cb) {
     listeners[cb] = DeviceEventEmitter.addListener(
       connectionChangeEvent,
       state => {
@@ -489,7 +496,7 @@ export default class JPush {
    * 如果连接状态变更为已连接返回 true
    * 如果连接状态变更为断开连接连接返回 false
    */
-  static removeConnectionChangeListener (cb) {
+  static removeConnectionChangeListener(cb) {
     if (!listeners[cb]) {
       return
     }
@@ -502,13 +509,13 @@ export default class JPush {
    * @param {Function} cb = (map) => { }
    * 返回 Object，属性和值在 Native 定义
    */
-  static addReceiveExtrasListener (cb) {
+  static addReceiveExtrasListener(cb) {
     listeners[cb] = DeviceEventEmitter.addListener(receiveExtrasEvent, map => {
       cb(map)
     })
   }
 
-  static removeReceiveExtrasListener (cb) {
+  static removeReceiveExtrasListener(cb) {
     if (!listeners[cb]) {
       return
     }
@@ -520,7 +527,7 @@ export default class JPush {
    * 获取 RegistrationId
    * @param {Function} cb = (String) => { }
    */
-  static getRegistrationID (cb) {
+  static getRegistrationID(cb) {
     JPushModule.getRegistrationID(id => {
       cb(id)
     })
@@ -531,7 +538,7 @@ export default class JPush {
    * 初始化 JPush SDK 代码,
    * NOTE: 如果已经在原生 SDK 中添加初始化代码则无需再调用 （通过脚本配置，会自动在原生中添加初始化，无需额外调用）
    */
-  static setupPush () {
+  static setupPush() {
     JPushModule.setupPush()
   }
 
@@ -539,7 +546,7 @@ export default class JPush {
    * iOS Only
    * @param {Function} cb = (String) => { } // 返回 appKey
    */
-  static getAppkeyWithcallback (cb) {
+  static getAppkeyWithcallback(cb) {
     JPushModule.getAppkeyWithcallback(appkey => {
       cb(appkey)
     })
@@ -549,7 +556,7 @@ export default class JPush {
    * iOS Only
    * @param {Function} cb = (int) => { } // 返回应用 icon badge。
    */
-  static getBadge (cb) {
+  static getBadge(cb) {
     JPushModule.getApplicationIconBadge(badge => {
       cb(badge)
     })
@@ -566,7 +573,7 @@ export default class JPush {
    * @param {Object} userInfo 推送的附加字段 选填
    * @param {String} soundName 自定义通知声音，设置为 null 为默认声音
    */
-  static setLocalNotification (
+  static setLocalNotification(
     date,
     textContain,
     badge,
@@ -607,7 +614,7 @@ export default class JPush {
   /**
    * @param {Notification} notification
    */
-  static sendLocalNotification (notification) {
+  static sendLocalNotification(notification) {
     JPushModule.sendLocalNotification(notification)
   }
 
@@ -617,7 +624,7 @@ export default class JPush {
    * @param {Int} badge
    * @param {Function} cb = () => { } //
    */
-  static setBadge (badge, cb) {
+  static setBadge(badge, cb) {
     JPushModule.setBadge(badge, value => {
       cb(value)
     })
