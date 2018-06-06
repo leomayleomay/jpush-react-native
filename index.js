@@ -299,8 +299,10 @@ export default class JPush {
 
   static removeAllListeners() {
     Object.keys(listeners).forEach(key => {
-      listeners[key].remove()
-      listeners[key] = null
+      if (listeners[key]) {
+        listeners[key].remove()
+        listeners[key] = null
+      }
     })
   }
 
